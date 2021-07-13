@@ -1,0 +1,1 @@
+web: gunicorn synergy_django.wsgi --log-file -
