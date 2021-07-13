@@ -33,9 +33,10 @@ if DEBUG == True:
     ]
 elif DEBUG == False:   
     ALLOWED_HOSTS = [
-        '.ec2-54-180-83-4.ap-northeast-2.compute.amazonaws.com',
+        # '.ec2-54-180-83-4.ap-northeast-2.compute.amazonaws.com',
         '.bookcake.shop',
-        '127.0.0.1'
+        '127.0.0.1',
+        '*'
     ]
 
 
