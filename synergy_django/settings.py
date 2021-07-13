@@ -23,20 +23,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','=3ar=l#c3ppb*gt%b2cm_6m$n&w+!f)bgis)q84&xjk(n1j!+1')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
+DEBUG = True
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 if DEBUG == True:
     ALLOWED_HOSTS = [
     '127.0.0.1',
     '.bookcake.shop',
+    '.bookcake.herokuapp.com'
     ]
 elif DEBUG == False:   
     ALLOWED_HOSTS = [
         # '.ec2-54-180-83-4.ap-northeast-2.compute.amazonaws.com',
         '.bookcake.shop',
         '127.0.0.1',
-        '*'
+        '.bookcake.herokuapp.com'
     ]
 
 
