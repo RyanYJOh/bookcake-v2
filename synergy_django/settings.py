@@ -110,16 +110,30 @@ DATABASES = {
     }
 }
 '''
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         # 'NAME' : BASE_DIR / 'db.sqlite3', 어느 블로그에서 이렇게 하라고 했는데 에러남
+#         # 'NAME' : BASE_DIR,
+#         'NAME' : os.path.join(BASE_DIR, 'db.sqlite3')
+#     }
+# }
+
+##### for Production
+import dj_database_url
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME' : BASE_DIR / 'db.sqlite3', 어느 블로그에서 이렇게 하라고 했는데 에러남
-        # 'NAME' : BASE_DIR,
-        'NAME' : os.path.join(BASE_DIR, 'db.sqlite3')
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bookcake_db',
+        'USER': 'ryan',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
