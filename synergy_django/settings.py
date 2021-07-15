@@ -126,11 +126,11 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bookcake_db',
-        'USER': 'ryan',
-        'PASSWORD': '',
+        'NAME': 'bookcake', # pgAdmin에서 설정한 DB이름
+        'USER': 'postgres',
+        'PASSWORD': 'shris9494', # pgAdmin에서 정한 패스워드
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432', # Postgres 디폴트
     }
 }
 
