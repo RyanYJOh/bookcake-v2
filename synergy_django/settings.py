@@ -24,7 +24,6 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','=3ar=l#c3ppb*gt%b2cm_6m$n&w+!f)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-# DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 if DEBUG == True:
     ALLOWED_HOSTS = [
@@ -120,7 +119,6 @@ DATABASES = {
 #     }
 # }
 
-##### for Production
 import dj_database_url
 
 DATABASES = {
@@ -130,9 +128,21 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'shris9494', # pgAdmin에서 정한 패스워드
         'HOST': 'localhost',
-        'PORT': '5432', # Postgres 디폴트
+        'PORT': 5432, # Postgres 디폴트
     }
 }
+
+# PRODUCTION
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd6mbbdav1j4l6k', 
+#         'USER': 'nkipwytzpgijao',
+#         'PASSWORD': 'd712a0eec104196bbe0a6d8759a1f7150076b4eb033857299f014b244e976e03',
+#         'HOST': 'c2-52-202-152-4.compute-1.amazonaws.com',
+#         'PORT': 5432, # Postgres 디폴트
+#     }
+# }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
