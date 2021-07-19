@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'django_summernote',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -190,6 +192,16 @@ STATICFILES_DIRS = (
     # os.path.join(BASE_DIR, 'assets'),
     # os.path.join(BASE_DIR, 'resources')
 )
+
+
+### CLOUDINARY settings START
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'hmda2w5rt',
+    'API_KEY' : '415435356137379',
+    'API_SECRET' : '8vlUx_PgDujOM7l_LbZ1EjZ5-ec'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+### CLOUDINARY settings END
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

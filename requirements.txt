@@ -54,3 +54,5 @@ whitenoise==5.0.1
 wsgi-request-logger==0.4.5
 zappa==0.53.0
 zipp==3.5.0
+cloudinary==1.26.0
+django-cloudinary-storage==0.3.0
