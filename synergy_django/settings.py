@@ -128,7 +128,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'shris9494', # pgAdmin에서 정한 패스워드
         'HOST': 'localhost',
-        'PORT': 5432, # Postgres 디폴트
+        'PORT': '5432', # Postgres 디폴트
     }
 }
 
