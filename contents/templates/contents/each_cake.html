@@ -1,0 +1,195 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block css %}
+
+{% endblock %}
+
+{% block title %} 책한조각 {% endblock %}
+
+{% block content %}
+<div class="row-h-40"></div>
+<!-- Header -->
+<div class="row">
+    <div class="col">
+        <a href="/cakes"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+            </svg>뒤로</a>
+    </div>
+</div>
+
+<!-- Content.image -->
+<div class="row justify-content-center">
+    <div class="col col-md-8">
+        <img class='img-detail' src='{{cake.image.url}}'>
+    </div>
+</div>
+<!-- Content.book -->
+<div class="row">
+    <div class="col right link">
+        📚&nbsp;<a class='underline' href="/book/{{cake.source.rcmnd_title}}">{{cake.source.author}}, <span class="bolder"><{{cake.source.title}}></span></a>
+    </div>
+</div>
+
+<div class="row-h-20"></div>
+
+<!-- Content.body -->
+<div class="row">
+    <div class="col">
+        {{cake.body|safe}}
+    </div>
+</div>
+
+<!-- Content.footnote -->
+{% if cake.footnote %}
+<div class="row-h-20"></div>
+<div class="row">
+    <div class="col text-s">
+        *{{cake.footnote|safe}}
+    </div>
+</div>
+{% else %}
+{% endif %}
+
+<div class="row-h-20 bottom-border"></div>
+<div class="row-h-20"></div>
+
+<!-- Comments.input -->
+<div class="row">
+    <div class="col text-l bolder">
+        메모✍
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col col-12">
+        <input type="text" id='comment-author' class='input-field input-comment-author' placeholder='쓰는 사람'>
+    </div>
+</div>
+<div class="row">
+    <div class="col col-11">
+        <textarea class='input-field input-comment' id='comment-input' rows='4' placeholder="생각은 짧게라도 꼭 적어둬야 해요"></textarea>
+    </div>
+    <div class="col col-1 my-auto">
+        <svg class="link" onclick="SubmitComment()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ed6f63" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+            </svg>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            아직 메모를 수정하는 기능은 없어요..!&nbsp;&nbsp;&nbsp;<button type="button" class="right btn btn-menial close" style="border: none !important;" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+    </div>
+</div>
+<!-- Comments.ryan's comment -->
+<div class="row">
+    <div class="col">
+        <div class="row justify-content-center">
+            <div class="col-11">
+                <ul id="comment-list">
+                    {% if cake.tmi %}
+                    <li>
+                        <p class="text-s">🍰 책한조각 아빠 / {{cake.created_at}}</p>
+                        <p>{{cake.tmi|safe}}</p>
+                    </li>
+                    {% else %}
+                    {% endif %}
+                    {% for c in comments %}
+                    <li class="left" id="{{c.pk}}">
+                        <p class="text-s">{{c.author}} / {{c.created_at}}</p>
+                        <p>{{c.body|linebreaks}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-1"></div>
+        </div>    
+    </div>
+</div>
+
+<!-- 구독 양식 -->
+<div class="row-h-40"></div>
+<div class="bottom-border"></div>
+<div class="row-h-20"></div>
+<div class="row justify-content-center">
+    <div class="col center">
+        <div class="text-medium text-black">매주 떠먹여 줄 사람이 필요한가요? <br class="mobile-only"/>제가 하죠 뭐.</div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5 center">
+        <form action="https://stibee.com/api/v1.0/lists/9itYVXH3Nm4N-Ec-vhovThxj9qMh1w==/public/subscribers" method="POST" target="_blank" accept-charset="utf-8"  name="stb_subscribe_form" id="stb_subscribe_form" novalidate="">
+            <input type="text" placeholder="이름" class="form-control" id="stb_name" name="name"/>
+            <input type="email" placeholder="가장 아끼는 이메일 주소" class="form-control" id="stb_email" name="email"/>
+            <div class="text-small text-black">❗ Gmail이 <span class="bold">아닌</span> 이메일 주소를 강력히 권장드립니다.</div>
+            <br/>
+            <button type="submit" class="btn btn-subscribe" id="stb_form_submit_button" onClick={this._openModal}>무료로 구독 📮</button>
+            <div class="stb_form_msg_error" id="stb_email_error"></div>
+            <div class="stb_form_result" id="stb_form_result"></div>
+        </form>
+    </div>
+</div>
+<div class="row-h-40"></div>
+
+<script>
+    function SubmitComment() {
+        // 랜덤 이모지 
+        var emoji = ['😎', '🙂','👀','🤗','😝','🤠','👻','🙊','🎅',
+        '🤴','👶','🧙‍♂️','🤹‍♀️','👩','🧑','💂‍♂️','👩‍🎓','😏','😬']
+        var rand_emoji = emoji[Math.floor(Math.random()*emoji.length)];
+
+        // author 이름 
+        var input_author = document.getElementById('comment-author');
+        if (input_author.value == '') {
+            // 랜덤으로 지정
+            var author_name = '이름없는 독자'
+        } else {
+            var author_name = input_author.value
+        }
+
+        // 댓글 내용
+        var comment = document.getElementById('comment-input');
+        if (comment.value == '') {
+            window.alert('빈 댓글은 용납할 수 없죠')
+        } else {
+            // Submit
+            var postData = {
+                this_cake : '{{cake.pk}}',
+                author : rand_emoji+' '+author_name,
+                body : comment.value
+            }
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: '{% url "create_comment" %}',
+                data : JSON.stringify(postData)
+            })
+
+            // Add to the comment list
+            var commentList = document.getElementById('comment-list');
+
+            var li = document.createElement("li");
+            
+            var pBody = document.createElement('p');
+            pBody.appendChild(document.createTextNode(comment.value))
+
+            var pAuthor = document.createElement('p');
+            pAuthor.setAttribute('class', 'text-s');   
+            var nameAndDate = rand_emoji+' '+author_name+' / 방금'
+            pAuthor.appendChild(document.createTextNode(nameAndDate))
+
+            li.appendChild(pAuthor);
+            li.appendChild(pBody);
+            
+            commentList.insertBefore(li, commentList.firstChild);
+
+            // Clear the textarea
+            input_author.value = '';
+            comment.value = '';
+        }
+    }
+
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block css %}
+
+{% endblock %}
+
+{% block title %} 오리지널스 {% endblock %}
+
+{% block content %}
+
+<div class="row-h-40"></div>
+<div class="row mobile-only">
+    <div class="col">
+        <div class="row justify-content-center">
+            <div class="col center">
+                <img id="logo_home_mobile" src="{% static 'bookcake/images/logo_home.png' %}">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col col-10 text-l">
+                통째로는 버겁습니다. <br> 한 조각씩은 쉽죠.
+            </div>
+        </div>
+        <div class="row-h-20"></div>
+        <div class="row justify-content-center">
+            <div class="col col-10">
+                <p>
+                    책을 읽다 보면, <br> <span class='bolder'>잠시 생각에 잠기게 하는 부분</span>들이 있습니다. <br><br> 한 조각씩 구워드립니다. <br>
+                    문득 새로운 생각이 땡길 때 한 번씩 찾아주세요.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col center">
+                <button class="btn btn-primary" onclick="location.href='/cakes'">음미하러 가기</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row pc-only">
+    <div class="row-h-80"></div>
+    <div class="col col-6">
+        <div class="row">
+            <div class="col text-xl">
+                통째로는 버겁습니다. <br> 한 조각씩은 쉽죠.
+            </div>
+        </div>
+        <div class="row-h-20"></div>
+        <div class="row">
+            <div class="col">
+                <p class="text-m">
+                    책을 읽다 보면, <span class='bolder'>잠시 생각에 잠기게 하는 부분</span>들이 있습니다. <br> 한 조각씩 구워드립니다. <br>
+                    문득 새로운 생각이 땡길 때 한 번씩 찾아주세요.
+                </p>
+            </div>
+        </div>
+        <br>
+        <div class="row-h-40"></div>
+        <div class="row">
+            <div class="col center">
+                <button class="btn btn-primary" onclick="location.href='/cakes'">음미하러 가기</button>
+            </div>
+        </div>
+    </div>
+    <div class="col col-6">
+        <img id="logo_home_pc" src="{% static 'bookcake/images/logo_home.png' %}">
+    </div>
+</div>
+
+{%endblock%}

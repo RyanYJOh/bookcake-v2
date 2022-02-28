@@ -1,0 +1,447 @@
+body {
+    font-family : 'NanumSquare', sans-serif !important;
+    /* font-size : 10px !important; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color : #F4EFEA !important;
+}
+.mobile-only {
+    display: none !important;
+}
+a {
+    color: #9A161F !important;
+    text-decoration: none !important;
+}
+a:hover {
+    color: #9A161F !important;
+    text-decoration: underline !important;
+}
+.badge {
+    background-color: #169a8fab;
+}
+ul {
+    list-style-type: none;
+    padding-left : 10px !important;
+}
+.alert {
+    padding-top : 0.5rem !important;
+    padding-bottom : 0.5rem !important;
+}
+.alert-warning {
+    /* background-color: #169a8f52 !important;
+    border-color: transparent !important;
+    color : white !important; */
+}
+.img-cake-list {
+    width : 100%;
+    height: auto;
+    /* border: 3px solid #169a8fab; */
+}
+.img-detail {
+    width: 100%;
+    height: auto;
+}
+.img-book-list {
+    width: 80%;
+    height: auto;
+}
+
+.card-list {
+    border : 2px solid #9A161F;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.card-book-list {
+
+}
+.btn-book {
+    width : 100%;
+}
+
+#logo_home_mobile {
+    width: 80%;
+    height: auto;
+}
+#logo_home_pc {
+width : 90%;
+height : auto;
+}
+
+/* Buttons */
+.btn {
+    border-radius : 100px !important;
+}
+button, button:focus, input[type="button"]:focus, button:active, input[type="button"]:active {
+    outline: none;
+}
+.btn-primary {
+    background-color: #9A161F !important;
+    border-color: transparent !important;
+    color: #F4EFEA !important;
+    font-size: 1.063rem !important;
+    /* font-weight: 800 !important; */
+}
+.btn-primary:hover {
+    background-color: #9A161F !important;
+}
+.btn-secondary {
+    background-color: transparent !important;
+    border: 2px solid #9A161F !important;
+    color: #9A161F !important;
+    font-size: 1.063rem !important;
+    font-weight: 600 !important;
+}
+.btn-secondary:hover {
+    background-color: transparent !important;
+}
+.btn-menial {
+    background-color: transparent !important;
+    border : 1px #9A161F solid !important;
+    font-size: 0.813rem !important;
+    color : #9A161F !important;
+}
+.btn-no-border {
+    background-color: transparent !important;
+    border: none !important;
+    padding : 0px !important;
+}
+.btn-cta {
+    border-radius: 0px;
+    border: none;
+    background-color: #9A161F;
+    color: #F4EFEA;
+    font-size: medium;
+    box-shadow: 1px 1px 3px 2px #9A161F !important;
+}
+.btn-cta:hover {
+    background-color: #9A161F !important;
+    font-weight: 800;
+    color: #F4EFEA;
+}
+.btn-cta:active, .btn-cta:focus {
+    background-color: #9A161F !important;
+    color: #F4EFEA;
+    font-weight: 800;
+}
+
+.btn-subscribe {
+    border: 2px solid #169a8f !important;
+    background-color: #F4EFEA !important;
+    color: #169a8f !important;
+    font-weight: bold !important;
+}
+.btn-subscribe:hover, .btn-subscribe:active, .btn-subscribe:focus {
+    border: 2px solid #e5f5f3 !important;
+    background-color: #169a8f !important;
+    color: #F4EFEA !important;
+}
+.btn-disabled {
+    background-color: grey !important;
+    border-color: transparent !important;
+    color: #F4EFEA !important;
+    font-size: 1.063rem !important;
+    /* font-weight: 800 !important; */
+}
+.btn-disabled:hover {
+    background-color: grey !important;
+    cursor : default !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #F4EFEA !important;
+    /* background-color: #2D2926 !important; */
+    color: #9A161F  !important;
+}
+#navbar-menu {
+    padding-right : 10px;
+    padding-left : 10px;
+}
+.navbar-item {
+    margin-right : 10px;
+    margin-left : 10px;
+}
+.nav-link {
+    color: #9A161F  !important;
+    cursor: pointer;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out; 
+}
+.navbar-expand {
+    justify-content: end !important;
+}
+
+/* Grid system */
+.row {
+    margin-top: 10px !important;
+    color: #9A161F;
+}
+.row-h-20 {
+    height: 20px;
+}
+.row-h-40 {
+    height: 40px;
+}
+.row-h-80 {
+    height: 80px;
+}
+
+.empty-row {
+    height : 10px;
+}
+.empty-row-l {
+    height : 50px;
+}
+.bottom-border {
+    border-bottom : 1px #9a161f56 solid;
+}
+.left-border {
+    border-left : 2px lightgray solid;
+}
+.row-topless {
+    margin-top: 0px !important;
+}
+.row-interactions {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.col {
+    color: #9A161F;
+}
+.col-wo-padding-left {
+    padding-left: 0px !important;
+}
+#profile-tab-col {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+/* 왜 text-left/right/cetner로 안되는지 모르겠어서 */ 
+.right {
+    text-align: right; 
+}
+.left {
+    text-align: left;
+}
+.center {
+    text-align: center;
+}
+
+/* Text */
+.text-xl {
+    font-size : 3rem; /* 48px */
+    font-weight: 800;
+}
+.text-l {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 800;
+}
+.text-m {
+    font-size: 1.063rem; /* 17px */
+}
+.text-s {
+    font-size: 0.813rem; /* 13px */ 
+}
+.text-xs {
+    font-size: 0.625rem; /* 10px */
+    font-weight: 300;
+}
+.textbunch {
+    line-height: 1.75;
+}
+.light {
+    font-weight: 300;
+}
+.bold {
+    font-weight: 600;
+}
+.bolder {
+    font-weight: 800;
+}
+.underline {
+    text-decoration: underline !important;
+}
+.italic {
+    font-style: italic;
+}
+.truncate {
+    overflow: hidden;
+    height : 6rem;
+}
+.truncate-home {
+    overflow: hidden;
+    height: auto;
+}
+.warning {
+    color: red;
+    font-weight: 400;
+}
+#input-self-title {  /* text-l과 동일 */
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+}
+
+/* Other custom settings*/
+.link:hover {
+    cursor: pointer;
+}
+.search-form {
+    padding-top : 0.35rem;
+    padding-bottom : 0.35rem;
+}
+.modal-footer {
+    width : 100% !important;
+}
+/* Forms */ 
+.form-control {
+    /* border-radius: 20px !important; */
+    font-size: 1.063rem; /* text-l과 동일 */
+}
+.form-group {
+    width: 100%;
+}
+.form-label { /* 로그인, 회원가입시 form label*/
+    font-size: 0.813rem;
+}
+.form-check { /* userinfo 입력시 라디오 버튼 간격 */
+    margin-bottom: 20px !important;
+}
+.textinput#id_title { /* text-l과 동일 스펙 */
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+}
+select, .search-form { /* Bootstrap과 동일한 설정 */
+    border-radius: 0.25rem;
+    border : 1px solid #ced4da; 
+    padding-top: 0.5rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    font-size: 1rem;
+    display: inline-block;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    line-height: 1.5;
+    color: #212529;
+    width: 100%
+}
+
+
+/* Inputs */
+input[type=password] {
+    font-family:Arial, Helvetica, sans-serif;
+}
+.input-field {
+    background-color: transparent !important;
+    border-color: lightgrey 2px solid !important;
+    padding-left: 10px;
+}
+.input-comment {
+    width: 100%;
+    border-radius : 5px;
+    padding: 10px;
+}
+.input-comment-author {
+    width: 20%;
+    border: none;
+    border-bottom: lightgrey 2px solid;
+}
+.form-control {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #169a8f;
+    border-radius: 0px;
+    margin-bottom: 5px;
+    background-color: #F4EFEA;
+}
+.form-control:focus {
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #169a8f;
+    border-radius: 0px;
+    margin-bottom: 5px;
+    background-color: #F4EFEA;
+
+    outline: none;
+    box-shadow: none !important;
+}
+.ci {
+    height: auto;
+    width: 100px;
+}
+
+
+/* Mobile */ 
+@media (max-width:768px) {
+    .mobile-only {
+        display: inline !important;
+    }
+    .pc-only {
+        display: none !important;
+    }
+    /* Text */
+    .p-detail {
+        font-size : 0.9rem;
+    }   
+    .text-xl {
+        font-size : 2.5rem;
+        font-weight: 800;
+    }
+    .text-l {
+        font-size: 1.9rem; /* 24px */
+        font-weight: 800;
+    }
+    .text-m {
+        font-size: 1rem;
+    }
+    .text-s {
+        font-size: 0.813rem; /* 13px */ 
+    }
+    .text-xs {
+        font-size: 0.625rem; /* 10px */
+        font-weight: 300;
+    }
+    .textinput#id_title {
+        font-size: 1.5rem; /* 24px */
+        font-weight: 800; 
+    }
+    .banner-row {
+        margin-top: 0px !important;
+        height: 350px;
+        background-color: #2D2926 !important;
+        color: white;
+    }
+    .white-block-mobile {
+        background-color: white !important;
+        padding: 10px !important;
+    }
+    .row-profile-mobile {
+        margin-top : 60px !important;
+    }
+    .img-detail-page {
+        width: 100%;
+        /* border-radius: 50px; */
+    }
+    .ci {
+        height: 100%;
+        width: 120px;
+    }
+    #self-ques-btn {
+        font-size: 0.813rem !important;
+    }
+    .list-group-profile {
+        padding-left: 0px !important;
+        border: none;
+    }
+    .input-comment-author {
+        width: 30%;
+    }
+    .img-book-list {
+        width: 60%;
+        height: auto;
+    }
+    #btn-rocket-purchase {
+        width: 100%;
+    }
+}

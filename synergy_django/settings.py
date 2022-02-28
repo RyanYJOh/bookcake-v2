@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','=3ar=l#c3ppb*gt%b2cm_6m$n&w+!f)bgis)q84&xjk(n1j!+1')
 
+SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
@@ -30,14 +31,16 @@ if DEBUG == True:
     ALLOWED_HOSTS = [
     '127.0.0.1',
     '.bookcake.shop',
-    '.bookcake.herokuapp.com'
+    '.bookcake.herokuapp.com',
+    '.bookcake.kr'
     ]
 elif DEBUG == False:   
     ALLOWED_HOSTS = [
         # '.ec2-54-180-83-4.ap-northeast-2.compute.amazonaws.com',
         '.bookcake.shop',
         '127.0.0.1',
-        '.bookcake.herokuapp.com'
+        '.bookcake.herokuapp.com',
+        '.bookcake.kr'
     ]
 
 
@@ -50,10 +53,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'main.apps.MainConfig',
     'contents.apps.ContentsConfig',
 
     'corsheaders',
     'rest_framework',
+    'bootstrap4',
     'django_summernote',
     'cloudinary_storage',
     'cloudinary',
@@ -129,7 +135,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bookcake', # pgAdmin에서 설정한 DB이름
         'USER': 'postgres',
-        'PASSWORD': 'shris9494', # pgAdmin에서 정한 패스워드
+        'PASSWORD': config("DB_PASSWORD"), # pgAdmin에서 정한 패스워드
         'HOST': 'localhost',
         'PORT': '5432', # Postgres 디폴트
     }
@@ -184,15 +190,24 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
-    # os.path.join(BASE_DIR, 'assets'),
-    # os.path.join(BASE_DIR, 'resources')
-)
+STATICFILES_DIRS = [ 
+    os.path.join(BASE_DIR, 'static'), 
+    os.path.join(BASE_DIR, 'main/static'),
+    # os.path.join(BASE_DIR, 'member/static'),
+    # os.path.join(BASE_DIR, 'register/static'),
+]
 
+## 운영서버 배포시 static 파일을 `collectstatic`하기 위한 절대 경로.
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 ### CLOUDINARY settings START
 CLOUDINARY_STORAGE = {

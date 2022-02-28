@@ -1,0 +1,225 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block css %}
+
+{% endblock %}
+
+{% block title %} 책한조각 {% endblock %}
+
+{% block content %}
+<div class="row-h-40"></div>
+<!-- Header -->
+<div class="row">
+    <div class="col col-12 text-xl">
+        어서오세요.
+    </div>
+    <div class="col col-12 text-m">
+        천천히 음미하며 <span className="bolder">생각 한 모금</span>과 함께하면<br class="mobile-only"/> 금상첨화인 거 알죠? ☕
+    </div>
+</div>
+<div class="row-h-20"></div>
+
+<!-- Search and Filter -->
+<div class="row">
+    <div class="col">
+        <div class="row justify-content-center">
+            <div class="col left">
+                {% if is_filtered %}
+                {% else%}
+                <button class="btn btn-menial" onclick="SearchModal()" id='search-icon'>
+                    <span class="pc-only">검색</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+                {% endif %}
+                {% if is_search_result %}
+                <button class="btn btn-menial" onclick="location.href='/cakes'">처음으로</button>
+                {% endif %}
+                {% if not is_search_result %}
+                <button class="btn btn-menial" onclick="CategoryModal()" id="filter-icon">
+                    <span class="pc-only">카테고리</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                    <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                </svg>
+                </button>&nbsp;&nbsp;"{{this_cat}}"
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- List -->
+<div class="row">
+    <div class="col">
+        {% for c in cakes %}
+        <br class='pc-only'>
+
+        <div class="pc-only row link" onclick="location.href='/cake/{{c.pk}}'">
+            <div class="col col-4 my-auto">
+                <img class='img-cake-list' src="{{c.image.url}}">
+            </div>
+            <div class="col col-8">
+                <div class="row">
+                    <div class="col right">
+                        {% for cat in c.category.all %}
+                        <span class="text-s">#{{cat}}</span>&nbsp;
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col bolder">{{c.key_line}}</div>
+                </div>
+                <div class="row">
+                    <div class="col truncate">{{c.body|safe}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-only row link" onclick="location.href='/cake/{{c.pk}}'">
+            <div class="col">
+                <img class='img-cake-list' src="{{c.image.url}}">
+            </div>
+            <br>
+            <div class="col right">
+                {% for cat in c.category.all %}
+                <span class="text-s">#{{cat}}</span>&nbsp;
+                {% endfor %}
+            </div>
+            <div class="col bolder">
+                {{c.key_line}}
+            </div>
+            <div class="col text-s truncate">
+                {{c.body|safe}}
+            </div>
+        </div>
+
+        <br class='pc-only'>
+        <div class="row bottom-border"></div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="col-12 center">
+        <div class="row-h-20"></div>
+        {% if cakes.has_previous %}
+        <a href="?page={{cakes.previous_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+            </svg></a>
+        {% else %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+            </svg>
+        {% endif %}
+        &nbsp;&nbsp;
+        <span>{{cakes.number}}</span>
+        <span>/</span>
+        <span>{{cakes.paginator.num_pages}}</span>
+        &nbsp;&nbsp;
+        {% if cakes.has_next %}
+        <a href="?page={{cakes.next_page_number}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+            </svg></a>
+        {% else %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z"/>
+            </svg>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 검색 모달 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="search-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-m">
+        </div>
+        <form action="" method="post" class="">{%csrf_token%}
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        {{search_form.which}}
+                    </div>
+                    <div class="col-md-9">
+                        {{search_form.search_keyword}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type='submit' class="btn btn-primary">
+                    검색하기
+                </button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<!-- 카테고리 모달 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="category-modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-l">카테고리로 모아보기</h5>
+          <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000"/>
+              </svg></span>
+            </span>
+        </div>
+        <div class="modal-body">
+            {% for cat in cats %}
+            <p class="link" id="{{cat.pk}}" onclick="FilterQuestions(id)" data-dismiss="modal">
+                {{cat.category}}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                    <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+            </p>
+            {% endfor %}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="NullifyFilterQuestions()" data-dismiss="modal">모두 보기</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- 구독 양식 -->
+<div class="row-h-40"></div>
+<div class="bottom-border"></div>
+<div class="row-h-20"></div>
+<div class="row justify-content-center">
+    <div class="col center">
+        <div class="text-medium text-black">매주 떠먹여 줄 사람이 필요한가요? <br class="mobile-only"/>제가 하죠 뭐.</div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5 center">
+        <form action="https://stibee.com/api/v1.0/lists/9itYVXH3Nm4N-Ec-vhovThxj9qMh1w==/public/subscribers" method="POST" target="_blank" accept-charset="utf-8"  name="stb_subscribe_form" id="stb_subscribe_form" novalidate="">
+            <input type="text" placeholder="이름" class="form-control" id="stb_name" name="name"/>
+            <input type="email" placeholder="가장 아끼는 이메일 주소" class="form-control" id="stb_email" name="email"/>
+            <div class="text-small text-black">❗ Gmail이 <span class="bold">아닌</span> 이메일 주소를 강력히 권장드립니다.</div>
+            <br/>
+            <button type="submit" class="btn btn-subscribe" id="stb_form_submit_button" onClick={this._openModal}>무료로 구독 📮</button>
+            <div class="stb_form_msg_error" id="stb_email_error"></div>
+            <div class="stb_form_result" id="stb_form_result"></div>
+        </form>
+    </div>
+</div>
+<div class="row-h-40"></div>
+
+<script>
+    function SearchModal() {
+        $('#search-modal').modal()
+    }
+    function CategoryModal() {
+        $('#category-modal').modal()
+    }
+    function FilterQuestions(id) {
+        var selectedCatPk = id;
+        location.href=`/cakes/filter=${selectedCatPk}`
+    } 
+    function NullifyFilterQuestions() {
+        location.href='/cakes'
+    }
+
+</script>
+{% endblock %}

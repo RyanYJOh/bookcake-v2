@@ -25,11 +25,13 @@ class Book(models.Model):
     url = models.URLField()
 
     is_rcmnded = models.BooleanField(default=False)
+    review_url = models.URLField()
     rcmnd_title = models.CharField(max_length = 30, null=True, blank=True)
     rcmnd_thickness = models.ForeignKey("BookThickness", null=True, blank=True, on_delete=models.CASCADE)
     rcmnd_whom = models.TextField(null=True, blank=True)
     rcmnd_introduction = models.TextField(null=True, blank=True)
     rcmnd_body = models.TextField(null=True, blank=True)
+    review_url = models.URLField(null=True)
 
     def __str__(self):
         return self.title
@@ -63,3 +65,10 @@ class Letter(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    objects = models.Manager()
+    this_cake = models.ForeignKey("Content", related_name='content', on_delete=models.CASCADE)
+    author = models.CharField(max_length=25, blank=True)
+    body = models.TextField(blank=True)
+    created_at = models.DateField(auto_now_add=True, null=True)

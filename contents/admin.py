@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Content, Book, Category, BookThickness, Letter
+from .models import Content, Book, Category, BookThickness, Letter, Comment
 
 # Apply summernote to all TextField in model.
 class ContentAdmin(SummernoteModelAdmin):  # instead of ModelAdmin
@@ -14,3 +14,4 @@ admin.site.register(Book, BookAdmin)
 admin.site.register(Category)
 admin.site.register(BookThickness)
 admin.site.register(Letter)
+admin.site.register(Comment)

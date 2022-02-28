@@ -1,0 +1,187 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block css %}
+
+{% endblock %}
+
+{% block title %} 책한조각 {% endblock %}
+
+{% block content %}
+<div class="row-h-40"></div>
+<!-- Header -->
+<div class="row">
+    <div class="col">
+        <span class="link" onclick="history.back()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z"/>
+            </svg>뒤로</span>
+    </div>
+</div>
+
+<!-- Introduction -->
+<div class="row justify-content-center">
+    <div class="col-8 col-md-3">
+        <img class='img-detail' src='{{book.cover.url}}'>
+    </div>
+    <div class="col col-9 pc-only">
+        <div class="row">
+            <div class="col text-l bolder">
+                <span class="text-l bolder">{{book.title}}</span>&nbsp;&nbsp;<span class="text-s light">by {{book.author}}</span>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[한줄 평]</span><br> {{book.rcmnd_introduction|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[추천 대상]</span><br> {{book.rcmnd_whom|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[두께]</span><br> {{book.rcmnd_thickness|safe}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col right">
+                <button class='btn btn-secondary' onclick="PurchaseModal()" >로켓으로 책 구매하기</button>
+            </div>
+        </div>
+    </div>
+    <div class="col col-10 mobile-only">
+        <div class="row">
+            <div class="col center text-l bolder">
+                <span class="text-l bolder">{{book.title}}</span>&nbsp;&nbsp;<span class="text-s light">by {{book.author}}</span>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[한줄 평]</span><br> {{book.rcmnd_introduction|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[추천 대상]</span><br> {{book.rcmnd_whom|safe}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class='bolder'>[두께]</span><br> {{book.rcmnd_thickness|safe}}
+            </div>
+        </div>
+    </div>
+    <div class="col col-12 center mobile-only">
+        <br>
+        <button class='btn btn-secondary' id="btn-rocket-purchase" onclick="PurchaseModal()" >로켓으로 책 구매하기</button>
+    </div>
+</div>
+
+<div class="row-h-40 pc-only"></div>
+
+<!-- 서평 -->
+<div class="row">
+    <div class="col">
+        {% if book.is_rcmnded %}
+        <button onclick="location.href='{{book.review_url}}'"class='btn btn-primary btn-book'>✍ 책 리뷰 읽으러 가기</button>
+        {% else %}
+        <button onclick="" class='btn btn-disabled btn-book'>😴 책 리뷰..는 작성중!</button>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row-h-40"></div>
+
+<!-- 조각들 -->
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <div class="col text-l bolder pc-only">
+                🍰 <{{book.title}}> 조각들
+            </div>
+            <div class="col text-m bolder mobile-only">
+                🍰 <{{book.title}}> 조각들
+            </div>
+        </div>
+        <div class="row">
+            {% if cake_exists %}
+            {% for c in cakes %}
+            <div class="col-12 col-md-6">
+                <img class='img-cake-list link' onclick="location.href='/cake/{{c.pk}}'" src="{{c.image.url}}">
+            </div>
+            <div class="row-h-20 mobile-only"></div>
+            {% endfor %}
+            {% elif not cake_exists %}
+            <div class="col center">
+                아직 이 책의 조각들이 없어요 🕳
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- 구매 모달 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="purchase-modal">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <div class="modal-title text-l">📚 책이 마음에 들었다면</div>
+        <span type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" fill="#000"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" fill="#000"/>
+            </svg></span>
+            </span>
+        </div>
+        <div class="modal-body">
+            <p class='text-m bold'>
+                이 링크는 저의 쿠팡 파트너스 활동의 일환입니다. <br>그런데 사실, 이왕이면 교보문고에 가서 책 냄새 맡으며 구매하는 걸 더 추천하긴 해요😎
+            </p>
+            <p class="text-s italic">
+                "이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다."
+            </p>
+        </div>
+        <div class="modal-footer center">
+            <button type="button" class="btn btn-secondary" onclick="location.href='{{book.url}}'" data-dismiss="modal">🚀 구매하기</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!-- 구독 양식 -->
+<div class="row-h-40"></div>
+<div class="bottom-border"></div>
+<div class="row-h-20"></div>
+<div class="row justify-content-center">
+    <div class="col center">
+        <div class="text-medium text-black">매주 떠먹여 줄 사람이 필요한가요? <br class="mobile-only"/>제가 하죠 뭐.</div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-10 col-md-5 center">
+        <form action="https://stibee.com/api/v1.0/lists/9itYVXH3Nm4N-Ec-vhovThxj9qMh1w==/public/subscribers" method="POST" target="_blank" accept-charset="utf-8"  name="stb_subscribe_form" id="stb_subscribe_form" novalidate="">
+            <input type="text" placeholder="이름" class="form-control" id="stb_name" name="name"/>
+            <input type="email" placeholder="가장 아끼는 이메일 주소" class="form-control" id="stb_email" name="email"/>
+            <div class="text-small text-black">❗ Gmail이 <span class="bold">아닌</span> 이메일 주소를 강력히 권장드립니다.</div>
+            <br/>
+            <button type="submit" class="btn btn-subscribe" id="stb_form_submit_button" onClick={this._openModal}>무료로 구독 📮</button>
+            <div class="stb_form_msg_error" id="stb_email_error"></div>
+            <div class="stb_form_result" id="stb_form_result"></div>
+        </form>
+    </div>
+</div>
+<div class="row-h-40"></div>
+
+<script>
+    function PurchaseModal() {
+        $('#purchase-modal').modal()
+    }
+
+</script>
+{% endblock %}
