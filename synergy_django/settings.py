@@ -22,7 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config("SECRET_KEY")
+# SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = "=3ar=l#c3ppb*gt%b2cm_6m$n&w+!f)bgis)q84&xjk(n1j!+1"
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
@@ -102,22 +104,6 @@ WSGI_APPLICATION = 'synergy_django.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-'''
-AWS EC2 쓸 때 사용했던 설정
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME' : 'bookcake_db', # DB 식별자랑 다름!! DB이름!!
-        'USER' : 'ryan',
-        'PASSWORD' : 'shris9494',
-        'HOST' : 'bookcake-db-instance.cazdqbj5oijd.ap-northeast-2.rds.amazonaws.com',
-        'PORT' : '3306',
-        'OPTIONS' : {
-            'init_command' : 'SET sql_mode="STRICT_TRANS_TABLES"'
-        }
-    }
-}
-'''
 
 # DATABASES = {
 #     'default': {
@@ -133,13 +119,21 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bookcake', # pgAdmin에서 설정한 DB이름
-        'USER': 'postgres',
-        'PASSWORD': config("DB_PASSWORD"), # pgAdmin에서 정한 패스워드
-        'HOST': 'localhost',
+        'NAME': 'd6mbbdav1j4l6k', # pgAdmin에서 설정한 DB이름
+        'USER': 'nkipwytzpgijao',
+        'PASSWORD' : 'd712a0eec104196bbe0a6d8759a1f7150076b4eb033857299f014b244e976e03',
+        # 'PASSWORD': config("DB_PASSWORD"), # pgAdmin에서 정한 패스워드
+        'HOST': 'ec2-52-202-152-4.compute-1.amazonaws.com',
         'PORT': '5432', # Postgres 디폴트
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # PRODUCTION
 # DATABASES = {
