@@ -266,7 +266,7 @@ button, button:focus, input[type="button"]:focus, button:active, input[type="but
 }
 .truncate {
     overflow: hidden;
-    height : 6rem;
+    height : 9rem;
 }
 .truncate-home {
     overflow: hidden;

@@ -56,19 +56,20 @@ class Content(models.Model):
     def __str__(self):
         return self.title
 
-class Letter(models.Model):
-    objects = models.Manager()
-    title = models.CharField(max_length=30)
-    url = models.URLField()
-    created_at = models.DateField(auto_now_add=False)
-    is_hot = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.title
-
 class Comment(models.Model):
     objects = models.Manager()
     this_cake = models.ForeignKey("Content", related_name='content', on_delete=models.CASCADE)
     author = models.CharField(max_length=25, blank=True)
     body = models.TextField(blank=True)
     created_at = models.DateField(auto_now_add=True, null=True)
+
+class Letter(models.Model):
+    objects = models.Manager()
+    cover = models.ImageField(upload_to="letter", height_field=None, width_field=None, max_length=None, null=True, blank=True)
+    title = models.CharField(max_length = 30)
+    published_at = models.DateField(auto_now_add=False)
+    url = models.URLField()
+    is_hot = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title + ' (' + str(self.published_at) + ')'

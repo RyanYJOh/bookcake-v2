@@ -14,6 +14,7 @@ urlpatterns = [
     path('cake/<int:id>', content_view.each_cake, name="each_cake"),
     path('books/', content_view.book_list, name='book_list'),
     path('book/<str:rcmnd_title>', content_view.each_book, name="each_book"),
+    path('inside-my-head', content_view.letter, name='letters'),
 
     ## 댓글
     path('ajax/create-comment', content_view.create_comment, name="create_comment"),
