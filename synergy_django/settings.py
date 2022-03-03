@@ -22,8 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = config("SECRET_KEY")
-SECRET_KEY = "=3ar=l#c3ppb*gt%b2cm_6m$n&w+!f)bgis)q84&xjk(n1j!+1"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -206,10 +205,8 @@ STATICFILES_FINDERS = [
 ### CLOUDINARY settings START
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : 'hmda2w5rt',
-    # 'API_KEY' : config("CLOUDINARY_API_KEY"),
-    'API_KEY' : '415435356137379',
-    # 'API_SECRET' : config("CLOUDINARY_API_SECRET"),
-    'API_SECRET' : '8vlUx_PgDujOM7l_LbZ1EjZ5-ec'
+    'API_KEY' : config("CLOUDINARY_API_KEY"),
+    'API_SECRET' : config("CLOUDINARY_API_SECRET"),
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 ### CLOUDINARY settings END

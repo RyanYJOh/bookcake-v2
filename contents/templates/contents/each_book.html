@@ -104,6 +104,7 @@
         <div class="row">
             <div class="col text-l bolder pc-only">
                 🍰 <{{book.title}}> 조각들
+                <div class="row-h-20"></div>
             </div>
             <div class="col text-m bolder mobile-only">
                 🍰 <{{book.title}}> 조각들
@@ -113,10 +114,15 @@
             {% if cake_exists %}
             {% for c in cakes %}
             <div class="col-12 col-md-6">
-                <img class='img-cake-list link' onclick="location.href='/cake/{{c.pk}}'" src="{{c.image.url}}">
+                <div class="row">
+                    <div class="col">
+                        <img class='img-cake-list link' onclick="location.href='/cake/{{c.pk}}'" src="{{c.image.url}}">
+                    </div>
+                </div>
+                <div class="row-h-20"></div>
             </div>
-            <div class="row-h-20 mobile-only"></div>
             {% endfor %}
+            
             {% elif not cake_exists %}
             <div class="col center">
                 아직 이 책의 조각들이 없어요 🕳
