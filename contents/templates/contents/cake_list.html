@@ -26,7 +26,7 @@
         <div class="row justify-content-center">
             <div class="col left">
                 <button class="btn btn-menial" onclick="SearchModal()" id='search-icon'>
-                    <span class="pc-only">검색</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <span class="">검색</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </button>
@@ -34,11 +34,17 @@
                 <button class="btn btn-menial" onclick="location.href='/cakes'">처음으로</button>
                 {% endif %}
                 {% if not is_search_result %}
-                <button class="btn btn-menial" onclick="CategoryModal()" id="filter-icon">
-                    <span class="pc-only">카테고리</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-                    <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-                </svg>
-                </button>
+                <div class="row-h-20"></div>
+                <div class="row">
+                    <div class="col center">
+                        <button class="badge badge-selected" onclick="NullifyFilterQuestions()">모두 보기</button>
+                        {% for cat in cats %}
+                        <button class="badge link badge-menial" id="{{cat.pk}}" onclick="FilterQuestions(id)" data-dismiss="modal">
+                            #{{cat.category}}&nbsp;
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>
@@ -77,12 +83,15 @@
             <br>
             <div class="col right">
                 {% for cat in c.category.all %}
-                <span class="text-s">#{{cat}}</span>&nbsp;
+                <span class="badge badge-pill badge-dark text-s">#{{cat}}</span>&nbsp;
                 {% endfor %}
             </div>
             <div class="col bolder">
-                {{c.key_line}}
+                {{c.key_line}}&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#9A161F" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
+                  </svg>
             </div>
+            <br>
             <div class="col text-s truncate">
                 {{c.body|safe}}
             </div>

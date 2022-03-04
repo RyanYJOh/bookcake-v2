@@ -20,6 +20,17 @@ a:hover {
 .badge {
     background-color: #169a8fab;
 }
+.badge-menial {
+    background-color: transparent;
+    border : #169a8f 1px solid;
+    color : #169a8f !important;
+}
+.badge-selected {
+    background-color: #169a8fab;
+    border : #169a8f 1px solid;
+    color : white !important;
+
+}
 ul {
     list-style-type: none;
     padding-left : 10px !important;

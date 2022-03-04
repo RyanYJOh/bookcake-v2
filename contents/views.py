@@ -102,7 +102,7 @@ def cake_list_filtered(request, category):
     is_filtered = True
     context = {
         'cakes' : cakes,
-        'this_cat' : this_cat.category,
+        'this_cat' : this_cat.pk,
         'cats' : cats,
         'is_filtered' : is_filtered,
     }
