@@ -131,7 +131,7 @@ def each_cake(request, id):
 
 def book_list(request):
     books = Book.objects.all().order_by('-pk')
-    paginator_books = Paginator(books, 15)
+    paginator_books = Paginator(books, 12)
     page_books = request.GET.get('page')
     books_paginated = paginator_books.get_page(page_books)
 

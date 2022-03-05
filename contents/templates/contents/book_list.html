@@ -30,7 +30,7 @@
 <!-- Book list -->
 <div class="row">
     {% for b in books_paginated %}
-    <div class="col-12 col-md-4">
+    <div class="col-6 col-md-4">
         <div class="row">
             <div class="col center">
                 <img class='img-book-list link shadow' src="{{b.cover.url}}" onclick="location.href='/book/{{b.rcmnd_title}}'">
@@ -38,7 +38,7 @@
         </div>
         <div class="row">
             <div class="col text-m center bolder">
-                {{b.title}} <span class="text-s light">by {{b.author}}</span>
+                {{b.title}} <span class="text-s light"><br class='mobile-only'>by {{b.author}}</span>
             </div>
         </div>
         <div class="row">
