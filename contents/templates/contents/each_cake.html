@@ -1,8 +1,10 @@
 {% extends 'main/base.html' %}
 
 {% load static %}
-{% block css %}
 
+{% block extrahead %}
+<meta property="og:image" content="{{cake.image.url}}" /> 
+<meta property="og:description" content="{{cake.keyline}}" /> 
 {% endblock %}
 
 {% block title %} 책한조각 {% endblock %}

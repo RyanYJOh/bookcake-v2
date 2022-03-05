@@ -1,8 +1,10 @@
 {% extends 'main/base.html' %}
 
 {% load static %}
-{% block css %}
 
+{% block extrahead %}
+<meta property="og:image" content="{{book.cover.url}}" /> 
+<meta property="og:description" content="이 책이 더 궁금하다면?" /> 
 {% endblock %}
 
 {% block title %} 책한조각 {% endblock %}

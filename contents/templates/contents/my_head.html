@@ -1,8 +1,10 @@
 {% extends 'main/base.html' %}
 
 {% load static %}
-{% block css %}
 
+{% block extrahead %}
+<meta property="og:image" content="{% static 'bookcake/images/logo_text.png' %}" /> 
+<meta property="og:description" content="새로운 생각이 땡길 때." /> 
 {% endblock %}
 
 {% block title %} 내 머릿속 잡생각 {% endblock %}

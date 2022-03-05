@@ -5,7 +5,12 @@
 
 {% endblock %}
 
-{% block title %} 오리지널스 {% endblock %}
+{% block extrahead %}
+<meta property="og:image" content="{% static 'bookcake/images/logo_text.png' %}" /> 
+<meta property="og:description" content="새로운 생각이 땡길 때." /> 
+{% endblock %}
+
+{% block title %} 책한조각 {% endblock %}
 
 {% block content %}
 
