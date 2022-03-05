@@ -91,7 +91,7 @@ def cake_list(request):
 def cake_list_filtered(request, category):
     this_cat = Category.objects.get(pk=category)
 
-    cakes_filtered = Content.objects.filter(category=this_cat.pk)
+    cakes_filtered = Content.objects.filter(category=this_cat.pk).order_by('-pk')
     paginator_cakes = Paginator(cakes_filtered, 10)
     page_cakes = request.GET.get('page')
     cakes = paginator_cakes.get_page(page_cakes)

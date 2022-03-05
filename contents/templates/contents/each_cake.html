@@ -99,6 +99,7 @@
                     {% else %}
                     {% endif %}
                     {% for c in comments %}
+                    <div class="row-h-20"></div>
                     <li class="left" id="{{c.pk}}">
                         <p class="text-s">{{c.author}} / {{c.created_at}}</p>
                         <p>{{c.body|linebreaks}}</p>
