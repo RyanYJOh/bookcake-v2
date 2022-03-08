@@ -32,9 +32,30 @@
 </div>
 
 <!-- Book list -->
+
 <div class="row">
     {% for b in books_paginated %}
-    <div class="col-6 col-md-4">
+        <div class="col-12 col-md-6 card card-body card-book-list">
+            <div class="row">
+                <div class="col col-4 center link" onclick="location.href='/book/{{b.rcmnd_title}}'">
+                    <img class='img-book-list shadow' src="{{b.cover.url}}" alt="...">
+                </div>
+                <div class="col col-8 left caption">
+                    <div class="text-m bolder link" onclick="location.href='/book/{{b.rcmnd_title}}'">📚 {{b.title}}</div>
+                    <div class="text-s right pc-only">by {{b.author}}</div><br>
+                    <div class="text-s">{{b.rcmnd_introduction|safe}}</div>
+                    <div class="right">
+                        <a href="/book/{{b.rcmnd_title}}" class="text-s bolder link">더 보기&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                          </svg> </a>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <!-- <div class="col col-md-1"></div> -->
+
+
+    <!-- <div class="col-6 col-md-4">
         <div class="row">
             <div class="col center">
                 <img class='img-book-list link shadow' src="{{b.cover.url}}" onclick="location.href='/book/{{b.rcmnd_title}}'">
@@ -51,7 +72,7 @@
             </div>
         </div>
         <div class="row-h-40"></div>
-    </div>
+    </div> -->
     {% endfor %}
 </div>
 <div class="col-12 center">

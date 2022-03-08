@@ -65,8 +65,10 @@ ul {
     padding-bottom: 10px;
 }
 .card-book-list {
-
+    /* border : 1px solid grey; */
+    background: transparent !important;
 }
+
 .btn-book {
     width : 100%;
 }
