@@ -278,8 +278,16 @@ button, button:focus, input[type="button"]:focus, button:active, input[type="but
     font-style: italic;
 }
 .truncate {
-    overflow: hidden;
-    height : 9rem;
+    /* overflow: hidden;
+    height : 9rem; */
+    overflow:hidden;
+    max-height: 9rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 6;
 }
 .truncate-home {
     overflow: hidden;
